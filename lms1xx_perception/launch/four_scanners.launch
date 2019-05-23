@@ -1,5 +1,8 @@
 <!-- Runs obstacle_detector with four sick lms1xx laser scanners. -->
 <launch>
+    <node pkg="tf" type="static_transform_publisher" name="base_to_tramcar" output="screen"
+          args="3.86 0 1.35 0 0.08901179 0 base tramcar 100"/>
+<!--
     <node pkg="lms1xx" type="LMS1xx_node" name="front_lms1xx" output="screen">
         <param name="host" type="string" value="192.168.0.1"/>
         <param name="frame_id" type="string" value="front_scanner"/>
@@ -35,6 +38,7 @@
 
     <node pkg="tf" type="static_transform_publisher" name="base_to_rear_scanner" output="screen"
           args="-6.45 0 0.8 3.14159265 0.17453292 0 base rear_scanner 100"/>
+-->
 
 </launch>
  

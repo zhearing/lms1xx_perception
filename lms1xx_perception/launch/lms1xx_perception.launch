@@ -1,21 +1,32 @@
+<!-- lms1xx perception -->
 <launch>
   <!-- Arguments -->
   <arg name="open_rviz" default="true"/>
 
 
+  <!-- scanners start -->
+  <include file="$(find lms1xx_perception)/launch/four_scanners.launch">
+  </include>
 
-  <!-- AMCL -->
-  <include file="$(find turtlebot3_navigation)/launch/amcl.launch"/>
+  <!-- filter -->
+  <include file="$(find lms1xx_perception)/launch/tramcar_laser_filter.launch">
+  </include>
 
-  <!-- move_base -->
-  <include file="$(find turtlebot3_navigation)/launch/move_base.launch">
-    <arg name="model" value="$(arg model)" />
-    <arg name="move_forward_only" value="$(arg move_forward_only)"/>
+  <!-- laser to pointcloud -->
+  <include file="$(find lms1xx_perception)/launch/laser_to_pointcloud.launch">
+  </include>
+
+  <!-- cloud merger and publish obstacle map  -->
+  <include file="$(find lms1xx_perception)/launch/cloud_merger.launch">
+  </include>
+
+  <!-- obstacle detection  -->
+  <include file="$(find lms1xx_perception)/launch/obstacle_detector.launch">
   </include>
 
   <!-- rviz -->
   <group if="$(arg open_rviz)"> 
     <node pkg="rviz" type="rviz" name="rviz" required="true"
-          args="-d $(find turtlebot3_navigation)/rviz/turtlebot3_navigation.rviz"/>
+          args="-d $(find lms1xx_perception)/rviz/lms1xx_perception.rviz"/>
   </group>
 </launch>
