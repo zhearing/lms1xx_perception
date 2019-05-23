@@ -10,13 +10,10 @@ install:
     
 before_script:
   - gem install coveralls-lcov
-  - docker exec build bash -c 'apt-get update && apt-get install -y ros-indigo-roslint gcovr lcov'
+  - docker exec build bash -c 'apt-get update && apt-get install -y ros-indigo-desktop-full gcovr lcov'
   - docker exec build bash -c 'source /opt/ros/indigo/setup.bash'
   - docker exec build bash -c 'lcov --directory /catkin_ws/src/repo --zerocounters'
 
 script:
   - docker exec build bash -c 'source /opt/ros/indigo/setup.bash && cd /catkin_ws && catkin_make'
-  - docker exec build bash -c 'source /opt/ros/indigo/setup.bash && cd /catkin_ws && catkin_make run_tests'
-  - docker exec build bash -c 'source /opt/ros/indigo/setup.bash && cd /catkin_ws && catkin_test_results .'  
-  - docker exec build bash -c 'source /opt/ros/indigo/setup.bash && cd /catkin_ws && catkin_make install'
   - docker exec build bash -c 'cd /catkin_ws/build && gcovr -r /catkin_ws/src/repo .'

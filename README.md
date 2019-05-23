@@ -11,7 +11,7 @@ This is part of our tramcar perception system. It generate a fused grid map for 
 The single SICK LMS1xx ROS driver is originally from [clearpathrobotics](https://github.com/clearpathrobotics/LMS1xx).
 
 
-[travis-img]: https://img.shields.io/travis/zhearing/lms1xx_perception/master.svg?style=for-the-badge
-[travis-link]: https://travis-ci.org/zhearing/lms1xx_perception
-[codacy-img]: https://img.shields.io/codacy/grade/e9dd9e8a49474b348bb9ea3fe592d5ef.svg?style=for-the-badge
-[codacy-link]: https://app.codacy.com/project/zhearing/lms1xx_perception/dashboard
+[travis-img]: https://travis-ci.com/zhearing/lms1xx_perception.svg?token=2AAv6RKxhQmpctyh8xz6&branch=master
+[travis-link]: https://travis-ci.com/zhearing/lms1xx_perception
+[codacy-img]: https://api.codacy.com/project/badge/Grade/e9dd9e8a49474b348bb9ea3fe592d5ef
+[codacy-link]: https://app.codacy.com/app/zhearing/lms1xx_perception/dashboard
