@@ -12,7 +12,6 @@ before_script:
   - gem install coveralls-lcov
   - docker exec build bash -c 'apt-get update && apt-get install -y ros-indigo-desktop-full cmake libopenblas-dev  liblapack-dev libarpack* libarmadillo*'
   - docker exec build bash -c 'source /opt/ros/indigo/setup.bash'
-  - docker exec build bash -c 'lcov --directory /catkin_ws/src/repo --zerocounters'
 
 script:
   - docker exec build bash -c 'source /opt/ros/indigo/setup.bash && cd /catkin_ws && catkin_make'
