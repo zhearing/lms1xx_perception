@@ -16,4 +16,3 @@ before_script:
 
 script:
   - docker exec build bash -c 'source /opt/ros/indigo/setup.bash && cd /catkin_ws && catkin_make'
-  - docker exec build bash -c 'cd /catkin_ws/build && gcovr -r /catkin_ws/src/repo .'
