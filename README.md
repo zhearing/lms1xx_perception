@@ -1,4 +1,4 @@
-# # lms1xx_perception
+# lms1xx_perception
 
 [![Build Status][travis-img]][travis-link]
 [![Codacy Badge][codacy-img]][codacy-link]
