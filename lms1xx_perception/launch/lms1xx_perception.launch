@@ -21,7 +21,7 @@
   </include>
 
   <!-- obstacle detection  -->
-  <include file="$(find lms1xx_perception)/launch/obstacle_detector.launch">
+  <include file="$(find obstacle_detector)/launch/nodes.launch">
   </include>
 
   <!-- rviz -->
