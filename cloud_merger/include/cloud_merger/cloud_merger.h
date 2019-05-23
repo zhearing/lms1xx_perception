@@ -53,12 +53,11 @@ class InputCloud
 class OutputCloud
 {
 	public:
-		OutputCloud(std::string topic,std::string frame,ros::NodeHandle nh);
+		OutputCloud(std::string topic,std::string frame,ros::NodeHandle nh, image_transport::ImageTransport it);
 		~OutputCloud() {}
 		pcl::PointCloud<pcl::PointXYZ> outCloud;
 		sensor_msgs::PointCloud2 outCloudMsg;
 		ros::Publisher pub;
-        image_transport::ImageTransport it;
         image_transport::Publisher obs_image_pub;
 	private:
 		std::string topic_name;
@@ -68,8 +67,8 @@ class OutputCloud
 class CloudMerger
 {
 	public:
-		CloudMerger(ros::NodeHandle node, ros::NodeHandle private_nh);
-        sensor_msgs::ImagePtr constructObstacleMap(const pcl::PointCloud<pcl::PointXYZ>::ConstPtr& scan);
+		CloudMerger(ros::NodeHandle node, ros::NodeHandle private_nh, image_transport::ImageTransport it);
+        sensor_msgs::ImagePtr constructObstacleMap(const pcl::PointCloud<pcl::PointXYZ> &scan);
 		void mergeNpub();
 		~CloudMerger() {}
 	private:

@@ -26,7 +26,7 @@ Eigen::Matrix4f InputCloud::poseTotfmatrix()
 	Eigen::AngleAxisd pitchAngle(this->ps.pitch,Eigen::Vector3d::UnitY());
 	Eigen::AngleAxisd yawAngle(this->ps.yaw,Eigen::Vector3d::UnitZ());
 	
-	Eigen::Quaternion<double> q =  yawAngle * pitchAngle * rollAngle;
+	Eigen::Quaternion<double> q = yawAngle * pitchAngle * rollAngle;
 
 	Eigen::Matrix3d rotationMatrix = q.matrix();
 	for(int i = 0 ; i < 3 ; i++)
@@ -47,20 +47,19 @@ Eigen::Matrix4f InputCloud::poseTotfmatrix()
 //InputCloud member function end
 
 //OutputCloud member function start
-OutputCloud::OutputCloud(std::string topic,std::string frame,ros::NodeHandle nh)
+OutputCloud::OutputCloud(std::string topic,std::string frame,ros::NodeHandle nh, image_transport::ImageTransport it)
 {
 	this->topic_name = topic;
 	this->frame_id = frame;
 	pub = nh.advertise<sensor_msgs::PointCloud2>(this->topic_name, 1);
 	this->outCloud.header.frame_id = this->frame_id;
-    image_transport::ImageTransport it(nh);
     obs_image_pub = it.advertise("LMS151_FUSION", 1);
 }
 
 //OutputCloud member function end
 
 //CloudMerger Member function
-CloudMerger::CloudMerger(ros::NodeHandle node, ros::NodeHandle private_nh)
+CloudMerger::CloudMerger(ros::NodeHandle node, ros::NodeHandle private_nh, image_transport::ImageTransport it)
 {
 	//use private node handle to get parameters
 	std::string s_key("CloudIn0"); //searching key (input)
@@ -124,19 +123,19 @@ CloudMerger::CloudMerger(ros::NodeHandle node, ros::NodeHandle private_nh)
 		if(!private_nh.getParam(key+"/frame_id",frame_id)){
 			std::cout << "not found : "<< key +"/frame_id" << std::endl;
 		}		
-		outCl = new OutputCloud(topic_name,frame_id,node);
+		outCl = new OutputCloud(topic_name,frame_id,node,it);
 	}
 }
 
-sensor_msgs::ImagePtr CloudMerger::constructObstacleMap(const pcl::PointCloud<pcl::PointXYZ>::ConstPtr &scan) {
+sensor_msgs::ImagePtr CloudMerger::constructObstacleMap(const pcl::PointCloud<pcl::PointXYZ> &scan) {
     int grid_dim_x = 500;
     int grid_dim_y = 750;
     float m_per_cell_ = 0.2;
     cv::Mat obs_image = cv::Mat::zeros(grid_dim_y, grid_dim_x, CV_8UC1);
 
-    for (size_t i = 0; i < scan->points.size(); ++i) {
-        int y = ((grid_dim_y * 2 / 3) - scan->points[i].x / m_per_cell_);
-        int x = ((grid_dim_x / 2) - scan->points[i].y / m_per_cell_);
+    for (size_t i = 0; i < scan.points.size(); ++i) {
+        int y = ((grid_dim_y * 2 / 3) - scan.points[i].x / m_per_cell_);
+        int x = ((grid_dim_x / 2) - scan.points[i].y / m_per_cell_);
         obs_image.ptr<char>(y)[x] = 255;
     }
     sensor_msgs::ImagePtr obs_image_msg = cv_bridge::CvImage(std_msgs::Header(), "mono8",

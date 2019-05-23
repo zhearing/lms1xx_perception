@@ -41,10 +41,10 @@ class LaserToCloud
 
 LaserToCloud::LaserToCloud()
 {
-    front_scanner_sub = nh.subscribe<sensor_msgs::LaserScan>("ivsicklidar_1", 10, &LaserToCloud::front_scanner_callback, this);
-    left_scanner_sub = nh.subscribe<sensor_msgs::LaserScan>("ivsicklidar_2", 10, &LaserToCloud::left_scanner_callback, this);
-    right_scanner_sub = nh.subscribe<sensor_msgs::LaserScan>("ivsicklidar_3", 10, &LaserToCloud::right_scanner_callback, this);
-    rear_scanner_sub = nh.subscribe<sensor_msgs::LaserScan>("ivsicklidar_4", 10, &LaserToCloud::rear_scanner_callback, this);
+    front_scanner_sub = nh.subscribe<sensor_msgs::LaserScan>("front_scan", 10, &LaserToCloud::front_scanner_callback, this);
+    left_scanner_sub = nh.subscribe<sensor_msgs::LaserScan>("left_scan", 10, &LaserToCloud::left_scanner_callback, this);
+    right_scanner_sub = nh.subscribe<sensor_msgs::LaserScan>("right_scan", 10, &LaserToCloud::right_scanner_callback, this);
+    rear_scanner_sub = nh.subscribe<sensor_msgs::LaserScan>("rear_scan", 10, &LaserToCloud::rear_scanner_callback, this);
     //front_scanner_sub = nh.subscribe<sensor_msgs::LaserScan>("front_scan", 10, &LaserToCloud::front_scanner_callback, this);
     //left_scanner_sub = nh.subscribe<sensor_msgs::LaserScan>("left_scan", 10, &LaserToCloud::left_scanner_callback, this);
     //right_scanner_sub = nh.subscribe<sensor_msgs::LaserScan>("right_scan", 10, &LaserToCloud::right_scanner_callback, this);
