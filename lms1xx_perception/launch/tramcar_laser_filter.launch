@@ -5,7 +5,7 @@
         <rosparam command="load" file="$(find laser_filters)/config/front_laser_config.yaml"/>
         <param name="high_fidelity" value="true"/>
         <param name="target_frame" type="string" value="base"/>
-        <remap from="scan" to="ivsicklidar_1"/>
+        <remap from="scan" to="front_scan"/>
         <remap from="scan_filtered" to="front_scan_filtered"/>
     </node>
     <!--
@@ -32,7 +32,7 @@
         <rosparam command="load" file="$(find laser_filters)/config/rear_laser_config.yaml"/>
         <param name="high_fidelity" value="true"/>
         <param name="target_frame" type="string" value="base"/>
-        <remap from="scan" to="ivsicklidar_4"/>
+        <remap from="scan" to="rear_scan"/>
         <remap from="scan_filtered" to="rear_scan_filtered"/>
     </node>
 </launch>

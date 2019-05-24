@@ -4,7 +4,7 @@
         <param name="laser_topic" type="string" value="front_scan_filtered"/>
         <param name="pc_topic" type="string" value="pcl"/>
         <param name="world_frame" type="string" value="base"/>
-        <param name="scanner_frame" type="string" value="tramcar"/>
+        <param name="scanner_frame" type="string" value="base"/>
 
         <param name="use_scan" type="bool" value="true"/>
         <param name="use_pcl" type="bool" value="false"/>
