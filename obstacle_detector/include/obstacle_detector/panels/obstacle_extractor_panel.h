@@ -49,74 +49,78 @@
 #include <QHBoxLayout>
 #include <QGridLayout>
 
-namespace obstacle_detector
-{
+namespace obstacle_detector {
 
-class ObstacleExtractorPanel : public rviz::Panel
-{
-Q_OBJECT
-public:
-  ObstacleExtractorPanel(QWidget* parent = 0);
+    class ObstacleExtractorPanel : public rviz::Panel {
+    Q_OBJECT
+    public:
+        ObstacleExtractorPanel(QWidget *parent = 0);
 
-  virtual void load(const rviz::Config& config);
-  virtual void save(rviz::Config config) const;
+        virtual void load(const rviz::Config &config);
 
-private Q_SLOTS:
-  void processInputs();
+        virtual void save(rviz::Config config) const;
 
-private:
-  void verifyInputs();
-  void setParams();
-  void getParams();
-  void evaluateParams();
-  void notifyParamsUpdate();
+    private Q_SLOTS:
 
-private:
-  QCheckBox* activate_checkbox_;
-  QCheckBox* use_scan_checkbox_;
-  QCheckBox* use_pcl_checkbox_;
-  QCheckBox* use_split_merge_checkbox_;
-  QCheckBox* circ_from_visib_checkbox_;
-  QCheckBox* discard_segments_checkbox_;
-  QCheckBox* transform_coords_checkbox_;
+        void processInputs();
 
-  QLineEdit* min_n_input_;
-  QLineEdit* dist_prop_input_;
-  QLineEdit* group_dist_input_;
-  QLineEdit* split_dist_input_;
-  QLineEdit* merge_sep_input_;
-  QLineEdit* merge_spread_input_;
-  QLineEdit* max_radius_input_;
-  QLineEdit* radius_enl_input_;
-  QLineEdit* frame_id_input_;
+    private:
+        void verifyInputs();
 
-  ros::NodeHandle nh_;
-  ros::NodeHandle nh_local_;
+        void setParams();
 
-  ros::ServiceClient params_cli_;
+        void getParams();
 
-  // Parameters
-  bool p_active_;
-  bool p_use_scan_;
-  bool p_use_pcl_;
+        void evaluateParams();
 
-  bool p_use_split_and_merge_;
-  bool p_circles_from_visibles_;
-  bool p_discard_converted_segments_;
-  bool p_transform_coordinates_;
+        void notifyParamsUpdate();
 
-  int p_min_group_points_;
+    private:
+        QCheckBox *activate_checkbox_;
+        QCheckBox *use_scan_checkbox_;
+        QCheckBox *use_pcl_checkbox_;
+        QCheckBox *use_split_merge_checkbox_;
+        QCheckBox *circ_from_visib_checkbox_;
+        QCheckBox *discard_segments_checkbox_;
+        QCheckBox *transform_coords_checkbox_;
 
-  double p_distance_proportion_;
-  double p_max_group_distance_;
+        QLineEdit *min_n_input_;
+        QLineEdit *dist_prop_input_;
+        QLineEdit *group_dist_input_;
+        QLineEdit *split_dist_input_;
+        QLineEdit *merge_sep_input_;
+        QLineEdit *merge_spread_input_;
+        QLineEdit *max_radius_input_;
+        QLineEdit *radius_enl_input_;
+        QLineEdit *frame_id_input_;
 
-  double p_max_split_distance_;
-  double p_max_merge_separation_;
-  double p_max_merge_spread_;
-  double p_max_circle_radius_;
-  double p_radius_enlargement_;
+        ros::NodeHandle nh_;
+        ros::NodeHandle nh_local_;
 
-  std::string p_frame_id_;
-};
+        ros::ServiceClient params_cli_;
+
+        // Parameters
+        bool p_active_;
+        bool p_use_scan_;
+        bool p_use_pcl_;
+
+        bool p_use_split_and_merge_;
+        bool p_circles_from_visibles_;
+        bool p_discard_converted_segments_;
+        bool p_transform_coordinates_;
+
+        int p_min_group_points_;
+
+        double p_distance_proportion_;
+        double p_max_group_distance_;
+
+        double p_max_split_distance_;
+        double p_max_merge_separation_;
+        double p_max_merge_spread_;
+        double p_max_circle_radius_;
+        double p_radius_enlargement_;
+
+        std::string p_frame_id_;
+    };
 
 } // namespace obstacle_detector

@@ -48,67 +48,71 @@
 #include <QPushButton>
 #include <QLabel>
 
-namespace obstacle_detector
-{
+namespace obstacle_detector {
 
-class ScansMergerPanel : public rviz::Panel
-{
-Q_OBJECT
-public:
-  ScansMergerPanel(QWidget* parent = 0);
+    class ScansMergerPanel : public rviz::Panel {
+    Q_OBJECT
+    public:
+        ScansMergerPanel(QWidget *parent = 0);
 
-  virtual void load(const rviz::Config& config);
-  virtual void save(rviz::Config config) const;
+        virtual void load(const rviz::Config &config);
 
-private Q_SLOTS:
-  void processInputs();
+        virtual void save(rviz::Config config) const;
 
-private:
-  void verifyInputs();
-  void setParams();
-  void getParams();
-  void evaluateParams();
-  void notifyParamsUpdate();
+    private Q_SLOTS:
 
-private:
-  QCheckBox* activate_checkbox_;
-  QCheckBox* scan_checkbox_;
-  QCheckBox* pcl_checkbox_;
+        void processInputs();
 
-  QLineEdit* n_input_;
-  QLineEdit* r_min_input_;
-  QLineEdit* r_max_input_;
+    private:
+        void verifyInputs();
 
-  QLineEdit* x_min_input_;
-  QLineEdit* x_max_input_;
-  QLineEdit* y_min_input_;
-  QLineEdit* y_max_input_;
+        void setParams();
 
-  QLineEdit* fixed_frame_id_input_;
-  QLineEdit* target_frame_id_input_;
+        void getParams();
 
-  ros::NodeHandle nh_;
-  ros::NodeHandle nh_local_;
+        void evaluateParams();
 
-  ros::ServiceClient params_cli_;
+        void notifyParamsUpdate();
 
-  // Parameters
-  bool p_active_;
-  bool p_publish_scan_;
-  bool p_publish_pcl_;
+    private:
+        QCheckBox *activate_checkbox_;
+        QCheckBox *scan_checkbox_;
+        QCheckBox *pcl_checkbox_;
 
-  int p_ranges_num_;
+        QLineEdit *n_input_;
+        QLineEdit *r_min_input_;
+        QLineEdit *r_max_input_;
 
-  double p_min_scanner_range_;
-  double p_max_scanner_range_;
+        QLineEdit *x_min_input_;
+        QLineEdit *x_max_input_;
+        QLineEdit *y_min_input_;
+        QLineEdit *y_max_input_;
 
-  double p_min_x_range_;
-  double p_max_x_range_;
-  double p_min_y_range_;
-  double p_max_y_range_;
+        QLineEdit *fixed_frame_id_input_;
+        QLineEdit *target_frame_id_input_;
 
-  std::string p_fixed_frame_id_;
-  std::string p_target_frame_id_;
-};
+        ros::NodeHandle nh_;
+        ros::NodeHandle nh_local_;
+
+        ros::ServiceClient params_cli_;
+
+        // Parameters
+        bool p_active_;
+        bool p_publish_scan_;
+        bool p_publish_pcl_;
+
+        int p_ranges_num_;
+
+        double p_min_scanner_range_;
+        double p_max_scanner_range_;
+
+        double p_min_x_range_;
+        double p_max_x_range_;
+        double p_min_y_range_;
+        double p_max_y_range_;
+
+        std::string p_fixed_frame_id_;
+        std::string p_target_frame_id_;
+    };
 
 } // namespace obstacle_detector

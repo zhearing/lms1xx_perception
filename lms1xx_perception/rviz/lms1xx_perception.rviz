@@ -57,7 +57,7 @@ Visualization Manager:
         Y: 0
         Z: 0
       Plane: XY
-      Plane Cell Count: 30
+      Plane Cell Count: 60
       Reference Frame: <Fixed Frame>
       Value: true
     - Alpha: 1
@@ -137,9 +137,9 @@ Visualization Manager:
       Enabled: true
       Invert Rainbow: false
       Max Color: 255; 255; 255
-      Max Intensity: 613
+      Max Intensity: 674
       Min Color: 0; 0; 0
-      Min Intensity: 125
+      Min Intensity: 0
       Name: PointCloud2
       Position Transformer: XYZ
       Queue Size: 10
@@ -190,7 +190,7 @@ Visualization Manager:
       Opacity: 0.75
       Segments color: 239; 41; 41
       Segments thickness: 0.20000000298023224
-      Topic: /obstacles
+      Topic: /raw_obstacles
       Unreliable: false
       Value: true
   Enabled: true
@@ -220,7 +220,7 @@ Visualization Manager:
   Value: true
   Views:
     Current:
-      Angle: -1.625000238418579
+      Angle: -1.5700002908706665
       Class: rviz/TopDownOrtho
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
@@ -230,7 +230,7 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Scale: 23.43141746520996
+      Scale: 6.414304256439209
       Target Frame: <Fixed Frame>
       Value: TopDownOrtho (rviz)
       X: 16.235570907592773

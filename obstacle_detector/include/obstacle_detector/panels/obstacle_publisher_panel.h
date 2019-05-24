@@ -51,75 +51,82 @@
 #include <QListWidget>
 #include <QGroupBox>
 
-namespace obstacle_detector
-{
+namespace obstacle_detector {
 
-class ObstaclePublisherPanel : public rviz::Panel
-{
-Q_OBJECT
-public:
-  ObstaclePublisherPanel(QWidget* parent = 0);
+    class ObstaclePublisherPanel : public rviz::Panel {
+    Q_OBJECT
+    public:
+        ObstaclePublisherPanel(QWidget *parent = 0);
 
-  virtual void load(const rviz::Config& config);
-  virtual void save(rviz::Config config) const;
+        virtual void load(const rviz::Config &config);
 
-private Q_SLOTS:
-  void processInputs();
-  void addObstacle();
-  void removeObstacles();
-  void reset();
+        virtual void save(rviz::Config config) const;
 
-private:
-  void verifyInputs();
-  void setParams();
-  void getParams();
-  void evaluateParams();
-  void notifyParamsUpdate();
+    private Q_SLOTS:
 
-private:
-  QCheckBox* activate_checkbox_;
-  QCheckBox* fusion_example_checkbox_;
-  QCheckBox* fission_example_checkbox_;
+        void processInputs();
 
-  QListWidget* obstacles_list_;
-  std::vector<QListWidgetItem*> obstacles_list_items_;
+        void addObstacle();
 
-  QPushButton* add_button_;
-  QPushButton* remove_button_;
-  QPushButton* reset_button_;
+        void removeObstacles();
 
-  QLineEdit* x_input_;
-  QLineEdit* y_input_;
-  QLineEdit* r_input_;
+        void reset();
 
-  QLineEdit* vx_input_;
-  QLineEdit* vy_input_;
+    private:
+        void verifyInputs();
 
-  QLineEdit* frame_input_;
+        void setParams();
 
-  ros::NodeHandle nh_;
-  ros::NodeHandle nh_local_;
+        void getParams();
 
-  ros::ServiceClient params_cli_;
+        void evaluateParams();
 
-  double x_, y_, r_, vx_, vy_;
+        void notifyParamsUpdate();
 
-  // Parameters
-  bool p_active_;
-  bool p_reset_;
-  bool p_fusion_example_;
-  bool p_fission_example_;
+    private:
+        QCheckBox *activate_checkbox_;
+        QCheckBox *fusion_example_checkbox_;
+        QCheckBox *fission_example_checkbox_;
 
-  double p_loop_rate_;
+        QListWidget *obstacles_list_;
+        std::vector<QListWidgetItem *> obstacles_list_items_;
 
-  std::vector<double> p_x_vector_;
-  std::vector<double> p_y_vector_;
-  std::vector<double> p_r_vector_;
+        QPushButton *add_button_;
+        QPushButton *remove_button_;
+        QPushButton *reset_button_;
 
-  std::vector<double> p_vx_vector_;
-  std::vector<double> p_vy_vector_;
+        QLineEdit *x_input_;
+        QLineEdit *y_input_;
+        QLineEdit *r_input_;
 
-  std::string p_frame_id_;
-};
+        QLineEdit *vx_input_;
+        QLineEdit *vy_input_;
+
+        QLineEdit *frame_input_;
+
+        ros::NodeHandle nh_;
+        ros::NodeHandle nh_local_;
+
+        ros::ServiceClient params_cli_;
+
+        double x_, y_, r_, vx_, vy_;
+
+        // Parameters
+        bool p_active_;
+        bool p_reset_;
+        bool p_fusion_example_;
+        bool p_fission_example_;
+
+        double p_loop_rate_;
+
+        std::vector<double> p_x_vector_;
+        std::vector<double> p_y_vector_;
+        std::vector<double> p_r_vector_;
+
+        std::vector<double> p_vx_vector_;
+        std::vector<double> p_vy_vector_;
+
+        std::string p_frame_id_;
+    };
 
 }

@@ -43,61 +43,65 @@
 #include <tf/transform_listener.h>
 #include <laser_geometry/laser_geometry.h>
 
-namespace obstacle_detector
-{
+namespace obstacle_detector {
 
-class ScansMerger
-{
-public:
-  ScansMerger(ros::NodeHandle& nh, ros::NodeHandle& nh_local);
-  ~ScansMerger();
+    class ScansMerger {
+    public:
+        ScansMerger(ros::NodeHandle &nh, ros::NodeHandle &nh_local);
 
-private:
-  bool updateParams(std_srvs::Empty::Request& req, std_srvs::Empty::Response& res);
-  void frontScanCallback(const sensor_msgs::LaserScan::ConstPtr front_scan);
-  void rearScanCallback(const sensor_msgs::LaserScan::ConstPtr rear_scan);
+        ~ScansMerger();
 
-  void initialize() { std_srvs::Empty empt; updateParams(empt.request, empt.response); }
+    private:
+        bool updateParams(std_srvs::Empty::Request &req, std_srvs::Empty::Response &res);
 
-  void publishMessages();
+        void frontScanCallback(const sensor_msgs::LaserScan::ConstPtr front_scan);
 
-  ros::NodeHandle nh_;
-  ros::NodeHandle nh_local_;
+        void rearScanCallback(const sensor_msgs::LaserScan::ConstPtr rear_scan);
 
-  ros::ServiceServer params_srv_;
+        void initialize() {
+            std_srvs::Empty empt;
+            updateParams(empt.request, empt.response);
+        }
 
-  ros::Subscriber front_scan_sub_;
-  ros::Subscriber rear_scan_sub_;
-  ros::Publisher scan_pub_;
-  ros::Publisher pcl_pub_;
+        void publishMessages();
 
-  tf::TransformListener tf_ls_;
-  laser_geometry::LaserProjection projector_;
+        ros::NodeHandle nh_;
+        ros::NodeHandle nh_local_;
 
-  bool front_scan_received_;
-  bool rear_scan_received_;
-  bool front_scan_error_;
-  bool rear_scan_error_;
+        ros::ServiceServer params_srv_;
 
-  sensor_msgs::PointCloud front_pcl_;
-  sensor_msgs::PointCloud rear_pcl_;
+        ros::Subscriber front_scan_sub_;
+        ros::Subscriber rear_scan_sub_;
+        ros::Publisher scan_pub_;
+        ros::Publisher pcl_pub_;
 
-  // Parameters
-  bool p_active_;
-  bool p_publish_scan_;
-  bool p_publish_pcl_;
+        tf::TransformListener tf_ls_;
+        laser_geometry::LaserProjection projector_;
 
-  int p_ranges_num_;
+        bool front_scan_received_;
+        bool rear_scan_received_;
+        bool front_scan_error_;
+        bool rear_scan_error_;
 
-  double p_min_scanner_range_;
-  double p_max_scanner_range_;
-  double p_min_x_range_;
-  double p_max_x_range_;
-  double p_min_y_range_;
-  double p_max_y_range_;
+        sensor_msgs::PointCloud front_pcl_;
+        sensor_msgs::PointCloud rear_pcl_;
 
-  std::string p_fixed_frame_id_;
-  std::string p_target_frame_id_;
-};
+        // Parameters
+        bool p_active_;
+        bool p_publish_scan_;
+        bool p_publish_pcl_;
+
+        int p_ranges_num_;
+
+        double p_min_scanner_range_;
+        double p_max_scanner_range_;
+        double p_min_x_range_;
+        double p_max_x_range_;
+        double p_min_y_range_;
+        double p_max_y_range_;
+
+        std::string p_fixed_frame_id_;
+        std::string p_target_frame_id_;
+    };
 
 } // namespace obstacle_detector

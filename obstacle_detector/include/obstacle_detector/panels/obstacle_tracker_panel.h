@@ -49,54 +49,58 @@
 #include <QHBoxLayout>
 #include <QGridLayout>
 
-namespace obstacle_detector
-{
+namespace obstacle_detector {
 
-class ObstacleTrackerPanel : public rviz::Panel
-{
-Q_OBJECT
-public:
-  ObstacleTrackerPanel(QWidget* parent = 0);
+    class ObstacleTrackerPanel : public rviz::Panel {
+    Q_OBJECT
+    public:
+        ObstacleTrackerPanel(QWidget *parent = 0);
 
-  virtual void load(const rviz::Config& config);
-  virtual void save(rviz::Config config) const;
+        virtual void load(const rviz::Config &config);
 
-private Q_SLOTS:
-  void processInputs();
+        virtual void save(rviz::Config config) const;
 
-private:
-  void verifyInputs();
-  void setParams();
-  void getParams();
-  void evaluateParams();
-  void notifyParamsUpdate();
+    private Q_SLOTS:
 
-private:
-  QCheckBox* activate_checkbox_;
+        void processInputs();
 
-  QLineEdit* tracking_duration_input_;
-  QLineEdit* loop_rate_input_;
-  QLineEdit* min_corr_cost_input_;
-  QLineEdit* std_corr_dev_input_;
-  QLineEdit* process_var_input_;
-  QLineEdit* process_rate_var_input_;
-  QLineEdit* measure_var_input_;
+    private:
+        void verifyInputs();
 
-  ros::NodeHandle nh_;
-  ros::NodeHandle nh_local_;
+        void setParams();
 
-  ros::ServiceClient params_cli_;
+        void getParams();
 
-  // Parameters
-  bool p_active_;
+        void evaluateParams();
 
-  double p_tracking_duration_;
-  double p_loop_rate_;
-  double p_min_correspondence_cost_;
-  double p_std_correspondence_dev_;
-  double p_process_variance_;
-  double p_process_rate_variance_;
-  double p_measurement_variance_;
-};
+        void notifyParamsUpdate();
+
+    private:
+        QCheckBox *activate_checkbox_;
+
+        QLineEdit *tracking_duration_input_;
+        QLineEdit *loop_rate_input_;
+        QLineEdit *min_corr_cost_input_;
+        QLineEdit *std_corr_dev_input_;
+        QLineEdit *process_var_input_;
+        QLineEdit *process_rate_var_input_;
+        QLineEdit *measure_var_input_;
+
+        ros::NodeHandle nh_;
+        ros::NodeHandle nh_local_;
+
+        ros::ServiceClient params_cli_;
+
+        // Parameters
+        bool p_active_;
+
+        double p_tracking_duration_;
+        double p_loop_rate_;
+        double p_min_correspondence_cost_;
+        double p_std_correspondence_dev_;
+        double p_process_variance_;
+        double p_process_rate_variance_;
+        double p_measurement_variance_;
+    };
 
 }

@@ -7,7 +7,7 @@ install:
   - docker run -itd --name build --net="host"
     -v $(pwd):/catkin_ws/src
     ros:indigo-perception
-    
+
 before_script:
   - docker exec build bash -c 'apt-get update && apt-get install -y ros-indigo-desktop-full libopenblas-dev liblapack-dev libarpack* libarmadillo*'
   - docker exec build bash -c 'cd /catkin_ws/src/lib/eigen-3.3.7 && mkdir build && cd build && cmake .. && make install && cd /usr/local/include && sudo ln -sf eigen3/Eigen Eigen'

@@ -1,32 +1,32 @@
 <!-- lms1xx perception -->
 <launch>
-  <!-- Arguments -->
-  <arg name="open_rviz" default="true"/>
+    <!-- Arguments -->
+    <arg name="open_rviz" default="true"/>
 
 
-  <!-- scanners start -->
-  <include file="$(find lms1xx_perception)/launch/four_scanners.launch">
-  </include>
+    <!-- scanners start -->
+    <include file="$(find lms1xx_perception)/launch/four_scanners.launch">
+    </include>
 
-  <!-- filter -->
-  <include file="$(find lms1xx_perception)/launch/tramcar_laser_filter.launch">
-  </include>
+    <!-- filter -->
+    <include file="$(find lms1xx_perception)/launch/tramcar_laser_filter.launch">
+    </include>
 
-  <!-- laser to pointcloud -->
-  <include file="$(find lms1xx_perception)/launch/laser_to_pointcloud.launch">
-  </include>
+    <!-- laser to pointcloud -->
+    <include file="$(find lms1xx_perception)/launch/laser_to_pointcloud.launch">
+    </include>
 
-  <!-- cloud merger and publish obstacle map  -->
-  <include file="$(find lms1xx_perception)/launch/cloud_merger.launch">
-  </include>
+    <!-- cloud merger and publish obstacle map  -->
+    <include file="$(find lms1xx_perception)/launch/cloud_merger.launch">
+    </include>
 
-  <!-- obstacle detection  -->
-  <include file="$(find obstacle_detector)/launch/nodes.launch">
-  </include>
+    <!-- obstacle detection  -->
+    <include file="$(find obstacle_detector)/launch/nodes.launch">
+    </include>
 
-  <!-- rviz -->
-  <group if="$(arg open_rviz)"> 
-    <node pkg="rviz" type="rviz" name="rviz" required="true"
-          args="-d $(find lms1xx_perception)/rviz/lms1xx_perception.rviz"/>
-  </group>
+    <!-- rviz -->
+    <group if="$(arg open_rviz)">
+        <node pkg="rviz" type="rviz" name="rviz" required="true"
+              args="-d $(find lms1xx_perception)/rviz/lms1xx_perception.rviz"/>
+    </group>
 </launch>

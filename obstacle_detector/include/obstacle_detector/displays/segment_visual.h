@@ -36,6 +36,7 @@
 #pragma once
 
 #ifndef Q_MOC_RUN
+
 #include <obstacle_detector/Obstacles.h>
 
 #include <OGRE/OgreVector3.h>
@@ -44,29 +45,32 @@
 
 #include <rviz/ogre_helpers/line.h>
 #include <rviz/ogre_helpers/billboard_line.h>
+
 #endif
 
-namespace obstacles_display
-{
+namespace obstacles_display {
 
-class SegmentVisual
-{
-public:
-  SegmentVisual(Ogre::SceneManager* scene_manager, Ogre::SceneNode* parent_node);
+    class SegmentVisual {
+    public:
+        SegmentVisual(Ogre::SceneManager *scene_manager, Ogre::SceneNode *parent_node);
 
-  virtual ~SegmentVisual();
+        virtual ~SegmentVisual();
 
-  void setData(const obstacle_detector::SegmentObstacle& segment);
-  void setFramePosition(const Ogre::Vector3& position);
-  void setFrameOrientation(const Ogre::Quaternion& orientation);
-  void setColor(float r, float g, float b, float a);
-  void setWidth(float w);
+        void setData(const obstacle_detector::SegmentObstacle &segment);
 
-private:
-  boost::shared_ptr<rviz::BillboardLine> line_;
+        void setFramePosition(const Ogre::Vector3 &position);
 
-  Ogre::SceneNode* frame_node_;
-  Ogre::SceneManager* scene_manager_;
-};
+        void setFrameOrientation(const Ogre::Quaternion &orientation);
+
+        void setColor(float r, float g, float b, float a);
+
+        void setWidth(float w);
+
+    private:
+        boost::shared_ptr<rviz::BillboardLine> line_;
+
+        Ogre::SceneNode *frame_node_;
+        Ogre::SceneManager *scene_manager_;
+    };
 
 } // end namespace obstacles_display

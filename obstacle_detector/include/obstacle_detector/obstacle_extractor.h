@@ -47,78 +47,90 @@
 #include "obstacle_detector/utilities/circle.h"
 #include "obstacle_detector/utilities/point_set.h"
 
-namespace obstacle_detector
-{
+namespace obstacle_detector {
 
-class ObstacleExtractor
-{
-public:
-  ObstacleExtractor(ros::NodeHandle& nh, ros::NodeHandle& nh_local);
-  ~ObstacleExtractor();
+    class ObstacleExtractor {
+    public:
+        ObstacleExtractor(ros::NodeHandle &nh, ros::NodeHandle &nh_local);
 
-private:
-  bool updateParams(std_srvs::Empty::Request& req, std_srvs::Empty::Response& res);
-  void scanCallback(const sensor_msgs::LaserScan::ConstPtr scan_msg);
-  void pclCallback(const sensor_msgs::PointCloud::ConstPtr pcl_msg);
+        ~ObstacleExtractor();
 
-  void initialize() { std_srvs::Empty empt; updateParams(empt.request, empt.response); }
+    private:
+        bool updateParams(std_srvs::Empty::Request &req, std_srvs::Empty::Response &res);
 
-  void processPoints();
-  void groupPoints();
-  void publishObstacles();
+        void scanCallback(const sensor_msgs::LaserScan::ConstPtr scan_msg);
 
-  void detectSegments(const PointSet& point_set);
-  void mergeSegments();
-  bool compareSegments(const Segment& s1, const Segment& s2, Segment& merged_segment);
-  bool checkSegmentsProximity(const Segment& s1, const Segment& s2);
-  bool checkSegmentsCollinearity(const Segment& segment, const Segment& s1, const Segment& s2);
+        void pclCallback(const sensor_msgs::PointCloud::ConstPtr pcl_msg);
 
-  void detectCircles();
-  void mergeCircles();
-  bool compareCircles(const Circle& c1, const Circle& c2, Circle& merged_circle);
+        void initialize() {
+            std_srvs::Empty empt;
+            updateParams(empt.request, empt.response);
+        }
 
-  ros::NodeHandle nh_;
-  ros::NodeHandle nh_local_;
+        void processPoints();
 
-  ros::Subscriber scan_sub_;
-  ros::Subscriber pcl_sub_;
-  ros::Publisher obstacles_pub_;
-  ros::ServiceServer params_srv_;
+        void groupPoints();
 
-  ros::Time stamp_;
-  std::string base_frame_id_;
-  tf::TransformListener tf_listener_;
+        void publishObstacles();
 
-  std::list<Point> input_points_;
-  std::list<Segment> segments_;
-  std::list<Circle> circles_;
+        void detectSegments(const PointSet &point_set);
 
-  // Parameters
-  bool p_active_;
-  bool p_use_scan_;
-  bool p_use_pcl_;
+        void mergeSegments();
 
-  bool p_use_split_and_merge_;
-  bool p_circles_from_visibles_;
-  bool p_discard_converted_segments_;
-  bool p_transform_coordinates_;
+        bool compareSegments(const Segment &s1, const Segment &s2, Segment &merged_segment);
 
-  int p_min_group_points_;
+        bool checkSegmentsProximity(const Segment &s1, const Segment &s2);
 
-  double p_distance_proportion_;
-  double p_max_group_distance_;
-  double p_max_split_distance_;
-  double p_max_merge_separation_;
-  double p_max_merge_spread_;
-  double p_max_circle_radius_;
-  double p_radius_enlargement_;
+        bool checkSegmentsCollinearity(const Segment &segment, const Segment &s1, const Segment &s2);
 
-  double p_min_x_limit_;
-  double p_max_x_limit_;
-  double p_min_y_limit_;
-  double p_max_y_limit_;
+        void detectCircles();
 
-  std::string p_frame_id_;
-};
+        void mergeCircles();
+
+        bool compareCircles(const Circle &c1, const Circle &c2, Circle &merged_circle);
+
+        ros::NodeHandle nh_;
+        ros::NodeHandle nh_local_;
+
+        ros::Subscriber scan_sub_;
+        ros::Subscriber pcl_sub_;
+        ros::Publisher obstacles_pub_;
+        ros::ServiceServer params_srv_;
+
+        ros::Time stamp_;
+        std::string base_frame_id_;
+        tf::TransformListener tf_listener_;
+
+        std::list<Point> input_points_;
+        std::list<Segment> segments_;
+        std::list<Circle> circles_;
+
+        // Parameters
+        bool p_active_;
+        bool p_use_scan_;
+        bool p_use_pcl_;
+
+        bool p_use_split_and_merge_;
+        bool p_circles_from_visibles_;
+        bool p_discard_converted_segments_;
+        bool p_transform_coordinates_;
+
+        int p_min_group_points_;
+
+        double p_distance_proportion_;
+        double p_max_group_distance_;
+        double p_max_split_distance_;
+        double p_max_merge_separation_;
+        double p_max_merge_spread_;
+        double p_max_circle_radius_;
+        double p_radius_enlargement_;
+
+        double p_min_x_limit_;
+        double p_max_x_limit_;
+        double p_min_y_limit_;
+        double p_max_y_limit_;
+
+        std::string p_frame_id_;
+    };
 
 } // namespace obstacle_detector

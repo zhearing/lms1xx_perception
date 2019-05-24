@@ -1,28 +1,28 @@
 <?xml version="1.0"?>
 <package>
-  <name>cloud_merger</name>
-  <version>0.0.0</version>
-  <description>The cloud_merger package</description>
+    <name>cloud_merger</name>
+    <version>0.0.0</version>
+    <description>The cloud_merger package</description>
 
-  <maintainer email="zyzhong@mail.ustc.edu.cn">Zeyu Zhong</maintainer>
-
-
-  <license>MIT</license>
+    <maintainer email="zyzhong@mail.ustc.edu.cn">Zeyu Zhong</maintainer>
 
 
-  <buildtool_depend>catkin</buildtool_depend>
-  <build_depend>pcl_conversions</build_depend>
-  <build_depend>pcl_ros</build_depend>
-  <build_depend>roscpp</build_depend>
-  <build_depend>sensor_msgs</build_depend>
-  <build_depend>libpcl-all-dev</build_depend>
-  <build_depend>cv_bridge</build_depend>
-  <build_depend>image_transport</build_depend>
-  <run_depend>libpcl-all</run_depend>
-  <run_depend>pcl_conversions</run_depend>
-  <run_depend>pcl_ros</run_depend>
-  <run_depend>roscpp</run_depend>
-  <run_depend>sensor_msgs</run_depend>
-  <run_depend>cv_bridge</run_depend>
-  <run_depend>image_transport</run_depend>
+    <license>MIT</license>
+
+
+    <buildtool_depend>catkin</buildtool_depend>
+    <build_depend>pcl_conversions</build_depend>
+    <build_depend>pcl_ros</build_depend>
+    <build_depend>roscpp</build_depend>
+    <build_depend>sensor_msgs</build_depend>
+    <build_depend>libpcl-all-dev</build_depend>
+    <build_depend>cv_bridge</build_depend>
+    <build_depend>image_transport</build_depend>
+    <run_depend>libpcl-all</run_depend>
+    <run_depend>pcl_conversions</run_depend>
+    <run_depend>pcl_ros</run_depend>
+    <run_depend>roscpp</run_depend>
+    <run_depend>sensor_msgs</run_depend>
+    <run_depend>cv_bridge</run_depend>
+    <run_depend>image_transport</run_depend>
 </package>

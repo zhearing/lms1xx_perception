@@ -8,5 +8,5 @@ catkin_package()
 
 #
 install(DIRECTORY launch rviz
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
-)
+        DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+        )

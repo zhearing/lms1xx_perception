@@ -37,22 +37,22 @@
 
 using namespace obstacle_detector;
 
-int main(int argc, char** argv) {
-  ros::init(argc, argv, "obstacle_extractor", ros::init_options::NoRosout);
-  ros::NodeHandle nh("");
-  ros::NodeHandle nh_local("~");
+int main(int argc, char **argv) {
+    ros::init(argc, argv, "obstacle_extractor", ros::init_options::NoRosout);
+    ros::NodeHandle nh("");
+    ros::NodeHandle nh_local("~");
 
-  try {
-    ROS_INFO("[Obstacle Extractor]: Initializing node");
-    ObstacleExtractor od(nh, nh_local);
-    ros::spin();
-  }
-  catch (const char* s) {
-    ROS_FATAL_STREAM("[Obstacle Extractor]: "  << s);
-  }
-  catch (...) {
-    ROS_FATAL_STREAM("[Obstacle Extractor]: Unexpected error");
-  }
+    try {
+        ROS_INFO("[Obstacle Extractor]: Initializing node");
+        ObstacleExtractor od(nh, nh_local);
+        ros::spin();
+    }
+    catch (const char *s) {
+        ROS_FATAL_STREAM("[Obstacle Extractor]: " << s);
+    }
+    catch (...) {
+        ROS_FATAL_STREAM("[Obstacle Extractor]: Unexpected error");
+    }
 
-  return 0;
+    return 0;
 }

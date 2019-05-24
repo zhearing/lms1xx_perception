@@ -45,68 +45,86 @@
 #include "obstacle_detector/utilities/tracked_obstacle.h"
 #include "obstacle_detector/utilities/math_utilities.h"
 
-namespace obstacle_detector
-{
+namespace obstacle_detector {
 
-class ObstacleTracker {
-public:
-  ObstacleTracker(ros::NodeHandle& nh, ros::NodeHandle& nh_local);
-  ~ObstacleTracker();
+    class ObstacleTracker {
+    public:
+        ObstacleTracker(ros::NodeHandle &nh, ros::NodeHandle &nh_local);
 
-private:
-  bool updateParams(std_srvs::Empty::Request& req, std_srvs::Empty::Response& res);
-  void timerCallback(const ros::TimerEvent&);
-  void obstaclesCallback(const obstacle_detector::Obstacles::ConstPtr new_obstacles);
+        ~ObstacleTracker();
 
-  void initialize() { std_srvs::Empty empt; updateParams(empt.request, empt.response); }
+    private:
+        bool updateParams(std_srvs::Empty::Request &req, std_srvs::Empty::Response &res);
 
-  double obstacleCostFunction(const CircleObstacle& new_obstacle, const CircleObstacle& old_obstacle);
-  void calculateCostMatrix(const std::vector<CircleObstacle>& new_obstacles, arma::mat& cost_matrix);
-  void calculateRowMinIndices(const arma::mat& cost_matrix, std::vector<int>& row_min_indices);
-  void calculateColMinIndices(const arma::mat& cost_matrix, std::vector<int>& col_min_indices);
+        void timerCallback(const ros::TimerEvent &);
 
-  bool fusionObstacleUsed(const int idx, const std::vector<int>& col_min_indices, const std::vector<int>& used_new, const std::vector<int>& used_old);
-  bool fusionObstaclesCorrespond(const int idx, const int jdx, const std::vector<int>& col_min_indices, const std::vector<int>& used_old);
-  bool fissionObstacleUsed(const int idx, const int T, const std::vector<int>& row_min_indices, const std::vector<int>& used_new, const std::vector<int>& used_old);
-  bool fissionObstaclesCorrespond(const int idx, const int jdx, const std::vector<int>& row_min_indices, const std::vector<int>& used_new);
+        void obstaclesCallback(const obstacle_detector::Obstacles::ConstPtr new_obstacles);
 
-  void fuseObstacles(const std::vector<int>& fusion_indices, const std::vector<int>& col_min_indices,
-                     std::vector<TrackedObstacle>& new_tracked, const Obstacles::ConstPtr& new_obstacles);
-  void fissureObstacle(const std::vector<int>& fission_indices, const std::vector<int>& row_min_indices,
-                       std::vector<TrackedObstacle>& new_tracked, const Obstacles::ConstPtr& new_obstacles);
+        void initialize() {
+            std_srvs::Empty empt;
+            updateParams(empt.request, empt.response);
+        }
 
-  void updateObstacles();
-  void publishObstacles();
+        double obstacleCostFunction(const CircleObstacle &new_obstacle, const CircleObstacle &old_obstacle);
 
-  ros::NodeHandle nh_;
-  ros::NodeHandle nh_local_;
+        void calculateCostMatrix(const std::vector<CircleObstacle> &new_obstacles, arma::mat &cost_matrix);
 
-  ros::Subscriber obstacles_sub_;
-  ros::Publisher obstacles_pub_;
-  ros::ServiceServer params_srv_;
-  ros::Timer timer_;
+        void calculateRowMinIndices(const arma::mat &cost_matrix, std::vector<int> &row_min_indices);
 
-  double radius_margin_;
-  obstacle_detector::Obstacles obstacles_;
+        void calculateColMinIndices(const arma::mat &cost_matrix, std::vector<int> &col_min_indices);
 
-  std::vector<TrackedObstacle> tracked_obstacles_;
-  std::vector<CircleObstacle> untracked_obstacles_;
+        bool
+        fusionObstacleUsed(const int idx, const std::vector<int> &col_min_indices, const std::vector<int> &used_new,
+                           const std::vector<int> &used_old);
 
-  // Parameters
-  bool p_active_;
-  bool p_copy_segments_;
+        bool fusionObstaclesCorrespond(const int idx, const int jdx, const std::vector<int> &col_min_indices,
+                                       const std::vector<int> &used_old);
 
-  double p_tracking_duration_;
-  double p_loop_rate_;
-  double p_sampling_time_;
-  double p_sensor_rate_;
-  double p_min_correspondence_cost_;
-  double p_std_correspondence_dev_;
-  double p_process_variance_;
-  double p_process_rate_variance_;
-  double p_measurement_variance_;
+        bool fissionObstacleUsed(const int idx, const int T, const std::vector<int> &row_min_indices,
+                                 const std::vector<int> &used_new, const std::vector<int> &used_old);
 
-  std::string p_frame_id_;
-};
+        bool fissionObstaclesCorrespond(const int idx, const int jdx, const std::vector<int> &row_min_indices,
+                                        const std::vector<int> &used_new);
+
+        void fuseObstacles(const std::vector<int> &fusion_indices, const std::vector<int> &col_min_indices,
+                           std::vector<TrackedObstacle> &new_tracked, const Obstacles::ConstPtr &new_obstacles);
+
+        void fissureObstacle(const std::vector<int> &fission_indices, const std::vector<int> &row_min_indices,
+                             std::vector<TrackedObstacle> &new_tracked, const Obstacles::ConstPtr &new_obstacles);
+
+        void updateObstacles();
+
+        void publishObstacles();
+
+        ros::NodeHandle nh_;
+        ros::NodeHandle nh_local_;
+
+        ros::Subscriber obstacles_sub_;
+        ros::Publisher obstacles_pub_;
+        ros::ServiceServer params_srv_;
+        ros::Timer timer_;
+
+        double radius_margin_;
+        obstacle_detector::Obstacles obstacles_;
+
+        std::vector<TrackedObstacle> tracked_obstacles_;
+        std::vector<CircleObstacle> untracked_obstacles_;
+
+        // Parameters
+        bool p_active_;
+        bool p_copy_segments_;
+
+        double p_tracking_duration_;
+        double p_loop_rate_;
+        double p_sampling_time_;
+        double p_sensor_rate_;
+        double p_min_correspondence_cost_;
+        double p_std_correspondence_dev_;
+        double p_process_variance_;
+        double p_process_rate_variance_;
+        double p_measurement_variance_;
+
+        std::string p_frame_id_;
+    };
 
 } // namespace obstacle_detector

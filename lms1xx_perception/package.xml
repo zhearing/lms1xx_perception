@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>lms1xx_perception</name>
-  <version>0.0.1</version>
-  <description>
-    The lms1xx_perception provides roslaunch scripts for starting the lms1xx.
-  </description>
-  <license>MIT</license>
-  <maintainer email="zyzhong@mail.ustc.edu.cn">Zeyu Zhong</maintainer>
+    <name>lms1xx_perception</name>
+    <version>0.0.1</version>
+    <description>
+        The lms1xx_perception provides roslaunch scripts for starting the lms1xx.
+    </description>
+    <license>MIT</license>
+    <maintainer email="zyzhong@mail.ustc.edu.cn">Zeyu Zhong</maintainer>
 
-  <buildtool_depend>catkin</buildtool_depend>
+    <buildtool_depend>catkin</buildtool_depend>
 </package>

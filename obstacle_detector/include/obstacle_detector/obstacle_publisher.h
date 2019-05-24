@@ -39,55 +39,62 @@
 #include <std_srvs/Empty.h>
 #include <obstacle_detector/Obstacles.h>
 
-namespace obstacle_detector
-{
+namespace obstacle_detector {
 
-class ObstaclePublisher
-{
-public:
-  ObstaclePublisher(ros::NodeHandle &nh, ros::NodeHandle &nh_local);
-  ~ObstaclePublisher();
+    class ObstaclePublisher {
+    public:
+        ObstaclePublisher(ros::NodeHandle &nh, ros::NodeHandle &nh_local);
 
-private:
-  bool updateParams(std_srvs::Empty::Request& req, std_srvs::Empty::Response& res);
-  void timerCallback(const ros::TimerEvent& e);
+        ~ObstaclePublisher();
 
-  void initialize() { std_srvs::Empty empt; updateParams(empt.request, empt.response); }
+    private:
+        bool updateParams(std_srvs::Empty::Request &req, std_srvs::Empty::Response &res);
 
-  void calculateObstaclesPositions(double dt);
-  void fusionExample(double t);
-  void fissionExample(double t);
-  void publishObstacles();
-  void reset();
+        void timerCallback(const ros::TimerEvent &e);
 
-  ros::NodeHandle nh_;
-  ros::NodeHandle nh_local_;
+        void initialize() {
+            std_srvs::Empty empt;
+            updateParams(empt.request, empt.response);
+        }
 
-  ros::Publisher obstacle_pub_;
-  ros::ServiceServer params_srv_;
-  ros::Timer timer_;
+        void calculateObstaclesPositions(double dt);
 
-  obstacle_detector::Obstacles obstacles_;
-  double t_;
+        void fusionExample(double t);
 
-  // Parameters
-  bool p_active_;
-  bool p_reset_;
-  bool p_fusion_example_;
-  bool p_fission_example_;
+        void fissionExample(double t);
 
-  double p_loop_rate_;
-  double p_sampling_time_;
-  double p_radius_margin_;
+        void publishObstacles();
 
-  std::vector<double> p_x_vector_;
-  std::vector<double> p_y_vector_;
-  std::vector<double> p_r_vector_;
+        void reset();
 
-  std::vector<double> p_vx_vector_;
-  std::vector<double> p_vy_vector_;
+        ros::NodeHandle nh_;
+        ros::NodeHandle nh_local_;
 
-  std::string p_frame_id_;
-};
+        ros::Publisher obstacle_pub_;
+        ros::ServiceServer params_srv_;
+        ros::Timer timer_;
+
+        obstacle_detector::Obstacles obstacles_;
+        double t_;
+
+        // Parameters
+        bool p_active_;
+        bool p_reset_;
+        bool p_fusion_example_;
+        bool p_fission_example_;
+
+        double p_loop_rate_;
+        double p_sampling_time_;
+        double p_radius_margin_;
+
+        std::vector<double> p_x_vector_;
+        std::vector<double> p_y_vector_;
+        std::vector<double> p_r_vector_;
+
+        std::vector<double> p_vx_vector_;
+        std::vector<double> p_vy_vector_;
+
+        std::string p_frame_id_;
+    };
 
 } // namespace obstacle_detector
