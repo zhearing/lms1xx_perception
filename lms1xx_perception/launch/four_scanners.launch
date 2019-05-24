@@ -31,10 +31,13 @@
               args="-1.64 3.16 3.5 1.57079633 0 -0.53407075 base left_scanner 100"/>
 
         <node pkg="tf" type="static_transform_publisher" name="base_to_right_scanner" output="screen"
-              args="-0.94 -3.16 3.5 -1.57079633 0 -0.53581608 base right_scanner 100"/>
+              args="-0.94 -3.16 3.5 -1.57079633 0 0.63581608 base right_scanner 100"/>
 
         <node pkg="tf" type="static_transform_publisher" name="base_to_rear_scanner" output="screen"
               args="-6.45 0 0.8 3.14159265 0.17453292 0 base rear_scanner 100"/>
+
+        <node pkg="tf" type="static_transform_publisher" name="base_to_tramcar" output="screen"
+              args="0 0 0 0 0 0 base tramcar 100"/>
 
 </launch>
  
