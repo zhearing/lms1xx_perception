@@ -23,9 +23,9 @@ git clone https://github.com/zhearing/lms1xx_perception.git
 ```
 ### System requirements
 
-**Warning**: The driver of LMS1xx(https://github.com/clearpathrobotics/LMS1xx) is **Not Available** under Ubuntu 18.04, if you want to you need to fix the bug by yourself.
+**Warning**: The driver of [LMS1xx](https://github.com/clearpathrobotics/LMS1xx) is **Not Available** under Ubuntu 18.04, you need to fix the bug by yourself.
 
-You will need [ROS](http://www.ros.org/install/), [CMake](www.cmake.org/), Eigen3(eigen.tuxfamily.org/), [Armadillo](http://arma.sourceforge.net/), [RViz plugins](http://wiki.ros.org/rviz). The following sections contain an installation command for various Ubuntu systems (click folds to expand):
+You will need [ROS](http://www.ros.org/install/), [CMake](www.cmake.org/), [Eigen3](eigen.tuxfamily.org/), [Armadillo](http://arma.sourceforge.net/), [RViz plugins](http://wiki.ros.org/rviz). The following sections contain an installation command for various Ubuntu systems (click folds to expand):
 
 <details>
 <summary>Ubuntu 14.04</summary>
@@ -33,7 +33,7 @@ You will need [ROS](http://www.ros.org/install/), [CMake](www.cmake.org/), Eigen
 #### Install these packages:
 
 ```bash
-sudo apt install -y ros-indigo-desktop-full libeigen3-dev libopenblas-dev liblapack-dev libarpack* libarmadillo
+sudo apt install -y ros-indigo-desktop-full libeigen3-dev libopenblas-dev liblapack-dev libarpack* libarmadillo*
 ```
 </details>
 
@@ -78,7 +78,7 @@ roslaunch lms1xx_perception.launch
 
 ## License
 
-This project is licensed under the MIT License.
+This project is licensed under the LGPL-3.0 License.
 
 [travis-img]: https://travis-ci.com/zhearing/lms1xx_perception.svg?token=2AAv6RKxhQmpctyh8xz6&branch=master
 [travis-link]: https://travis-ci.com/zhearing/lms1xx_perception

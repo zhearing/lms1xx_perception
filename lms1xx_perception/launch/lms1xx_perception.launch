@@ -3,7 +3,6 @@
     <!-- Arguments -->
     <arg name="open_rviz" default="true"/>
 
-
     <!-- scanners start -->
     <include file="$(find lms1xx_perception)/launch/four_scanners.launch">
     </include>
@@ -12,6 +11,7 @@
     <include file="$(find lms1xx_perception)/launch/tramcar_laser_filter.launch">
     </include>
 
+    <!-- laser assembler -->
     <node pkg="laser_assembler" type="laser_scan_assembler" output="screen"  name="laser_scan_assembler">
         <remap from="scan" to="front_scan_filtered"/> 
         <param name="tf_cache_time_secs" type="double" value="10.0" />
