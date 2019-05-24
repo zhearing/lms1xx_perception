@@ -6,7 +6,7 @@
 This is part of our tramcar perception system. It generate a fused grid map for obstacles with four [SICK LMS151](https://www.sick.com/ag/en/detection-and-ranging-solutions/2d-lidar-sensors/lms1xx/lms151-10100/p/p141840). 
 
 Check out a video that shows all objects with the distance of less than 15 meters: 
-[![Obstacle detection of tramcar]("img/tramcar.jpg")](https://v.qq.com/x/page/j0874k4u7tb.html "Obstacle detection of tramcar")
+[![Obstacle detection of tramcar](https://s2.ax1x.com/2019/05/24/ViDeZ6.jpg)](https://v.qq.com/x/page/j0874k4u7tb.html "Obstacle detection of tramcar")
 
 ## Prerequisites 
 
@@ -20,8 +20,10 @@ cd src
 git clone https://github.com/zhearing/lms1xx_perception.git
 ```
 ### System requirements
-You will need [ROS](http://www.ros.org/install/), [CMake](www.cmake.org/), Eigen3(eigen.tuxfamily.org/), [Armadillo](http://arma.sourceforge.net/), [RViz plugins](http://wiki.ros.org/rviz). The following sections contain an installation command for various Ubuntu
-systems (click folds to expand):
+
+**Warning**: The driver of LMS1xx(https://github.com/clearpathrobotics/LMS1xx) is **Not Available** under Ubuntu 18.04, if you want to you need to fix the bug by yourself.
+
+You will need [ROS](http://www.ros.org/install/), [CMake](www.cmake.org/), Eigen3(eigen.tuxfamily.org/), [Armadillo](http://arma.sourceforge.net/), [RViz plugins](http://wiki.ros.org/rviz). The following sections contain an installation command for various Ubuntu systems (click folds to expand):
 
 <details>
 <summary>Ubuntu 14.04</summary>
@@ -35,8 +37,6 @@ sudo apt install -y ros-indigo-desktop-full libeigen3-dev libopenblas-dev liblap
 
 <details>
 <summary>Ubuntu 18.04</summary>
-
-**Warning**: The driver of LMS1xx(https://github.com/clearpathrobotics/LMS1xx) is **Not Available** under Ubuntu 18.04, if you want to you need to fix the bug by yourself.
 
 #### Install these packages:
 
