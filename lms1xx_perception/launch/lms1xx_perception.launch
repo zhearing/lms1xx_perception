@@ -12,6 +12,16 @@
     <include file="$(find lms1xx_perception)/launch/tramcar_laser_filter.launch">
     </include>
 
+    <node pkg="laser_assembler" type="laser_scan_assembler" output="screen"  name="laser_scan_assembler">
+        <remap from="scan" to="front_scan_filtered"/> 
+        <param name="tf_cache_time_secs" type="double" value="10.0" />
+        <param name="max_scans" type="int" value="40" />
+        <param name="fixed_frame" type="string" value="tramcar" />
+    </node>
+
+    <node pkg="laser_assembler" type="publish_pc_client" output="screen"  name="publish_pc_client">
+    </node>
+
     <!-- laser to pointcloud -->
     <include file="$(find lms1xx_perception)/launch/laser_to_pointcloud.launch">
     </include>
