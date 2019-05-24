@@ -10,8 +10,9 @@ install:
     
 before_script:
   - gem install coveralls-lcov
-  - docker exec build bash -c 'apt-get update && apt-get install -y ros-indigo-desktop-full cmake libeigen3-dev libopenblas-dev  liblapack-dev libarpack* libarmadillo*'
+  - docker exec build bash -c 'apt-get update && apt-get install -y ros-indigo-desktop-full cmake libopenblas-dev  liblapack-dev libarpack* libarmadillo*'
   - docker exec build bash -c 'source /opt/ros/indigo/setup.bash'
 
 script:
-  - docker exec build bash -c 'source /opt/ros/indigo/setup.bash && cd /catkin_ws && catkin_make'
+  - docker exec build bash -c 'cd /catkin_ws/src/lms1xx_perception/libeigen-3.3.7 && mkdir build && cd build && cmake .. && make install'
+  - docker exec build bash -c 'source /opt/ros/indigo/setup.bash && cd /catkin_ws && catkin_make -DCMAKE_BUILD_TYPE=Release -j8'
