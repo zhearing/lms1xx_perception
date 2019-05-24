@@ -6,7 +6,7 @@
 This is part of our tramcar perception system. It generate a fused grid map for obstacles with four [SICK LMS151](https://www.sick.com/ag/en/detection-and-ranging-solutions/2d-lidar-sensors/lms1xx/lms151-10100/p/p141840). 
 
 Check out a video that shows all objects with the distance of less than 15 meters: 
-[![Obstacle detection of tramcar](https://s2.ax1x.com/2019/05/24/ViDeZ6.jpg)](https://v.qq.com/x/page/j0874k4u7tb.html "Obstacle detection of tramcar")
+[![Obstacle detection of tramcar](https://s2.ax1x.com/2019/05/24/ViDdJg.png)](https://v.qq.com/x/page/j0874k4u7tb.html "Obstacle detection of tramcar")
 
 ## Prerequisites 
 
