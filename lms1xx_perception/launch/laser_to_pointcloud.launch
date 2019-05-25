@@ -3,8 +3,10 @@
     <node pkg="laser_to_pointcloud" type="laser_to_pointcloud_node"
           name="laser_to_pointcloud">
         <remap from="front_scan" to="front_scan_filtered"/>
-        <!--<remap from="left_scan" to="ivsicklidar_2"/> -->
-        <!--<remap from="right_scan" to="ivsicklidar_3"/> -->
+        <!--
+        <remap from="left_scan" to="ivsicklidar_2"/>
+        <remap from="right_scan" to="ivsicklidar_3"/>
+        -->
         <remap from="rear_scan" to="rear_scan_filtered"/>
     </node>
 </launch>

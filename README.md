@@ -19,7 +19,8 @@ cd <catkin_ws>            # navigate to the workspace
 mkdir src                 # create src dir if you don't have it already
 cd src
 # Now you just need to clone the repo:
-git clone https://github.com/zhearing/lms1xx_perception.git
+git clone --recursive https://github.com/zhearing/lms1xx_perception.git
+git submodule update --init --recursive
 ```
 ### System requirements
 
