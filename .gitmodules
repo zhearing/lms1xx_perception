@@ -1,0 +1,3 @@
+[submodule "cloud_merger"]
+	path = cloud_merger
+	url = git@github.com:zhearing/cloud_merger.git
