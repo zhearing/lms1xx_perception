@@ -65,12 +65,12 @@ catkin_make -DCMAKE_BUILD_TYPE=Release -j8
 ### Run online
 ```bash
 roslaunch lms1xx_perception four_scanners.launch
-roslaunch lms1xx_perception.launch
+roslaunch lms1xx_perception lms1xx_perception.launch
 ```
 ### Run offline
 Note: Don't forget to use simulation time when republishing from a bag file: [Using Sim Time](http://wiki.ros.org/Clock#Using_Simulation_Time_from_the_.2BAC8-clock_Topic).
 ```bash
-roslaunch lms1xx_perception.launch
+roslaunch lms1xx_perception lms1xx_perception.launch
 ```
 
 ## Authors 
