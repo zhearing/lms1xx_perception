@@ -4,9 +4,10 @@
     <arg name="open_rviz" default="true"/>
 
     <!-- scanners start -->
-    <include file="$(find lms1xx_perception)/launch/four_scanners.launch">
+<!--    <include file="$(find lms1xx_perception)/launch/four_scanners.launch">
     </include>
-
+-->
+ 
     <!-- filter -->
     <include file="$(find lms1xx_perception)/launch/tramcar_laser_filter.launch">
     </include>
