@@ -91,7 +91,7 @@ int main(int argc, char **argv)
     scan_msg.range_min = 0.01;
     scan_msg.range_max = 50.0;
     scan_msg.scan_time = 100.0 / cfg.scaningFrequency;
-    scan_msg.angle_increment = static_cast<double>(outputRange.angleResolution / 10000.0 * DEG2RAD);
+    scan_msg.angle_increment = static_cast<double>(outputRange.angleResolution / 2 / 10000.0 * DEG2RAD);
     scan_msg.angle_min = static_cast<double>(outputRange.startAngle / 10000.0 * DEG2RAD - M_PI / 2);
     scan_msg.angle_max = static_cast<double>(outputRange.stopAngle / 10000.0 * DEG2RAD - M_PI / 2);
 
@@ -99,8 +99,8 @@ int main(int argc, char **argv)
     ROS_DEBUG_STREAM("Device frequency is " << (double)cfg.scaningFrequency / 100.0 << " Hz");
 
     int angle_range = outputRange.stopAngle - outputRange.startAngle;
-    int num_values = angle_range / outputRange.angleResolution;
-    if (angle_range % outputRange.angleResolution == 0)
+    int num_values = angle_range / (outputRange.angleResolution / 2);
+    if (angle_range % outputRange.angleResolution / 2 == 0)
     {
       // Include endpoint
       ++num_values;
@@ -109,7 +109,7 @@ int main(int argc, char **argv)
     scan_msg.intensities.resize(num_values);
 
     scan_msg.time_increment =
-      (outputRange.angleResolution / 10000.0)
+      (outputRange.angleResolution / 2 / 10000.0)
       / 360.0
       / (cfg.scaningFrequency / 100.0);
 
